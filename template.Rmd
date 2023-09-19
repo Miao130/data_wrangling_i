@@ -1,0 +1,72 @@
+---
+title: "Simple document"
+output: html_document
+---
+
+I'm an R Markdown document! 
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+
+```{r}
+samp = rnorm(100)
+length(samp)
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+
+Let's import the FAS__litters.csv
+
+```{r}
+library(tidyverse)
+```
+
+Let's import the `FAS__litters.csv` csv.
+
+```{r}
+litters_df =
+  read_csv("data_import_examples/FAS_litters.csv")
+litters_df=
+  janitor::clean_names(litters_df) #loweruppercase union and clean special characters
+```
+Import the same dataset using an absolute path. 
+
+```{r}
+litters_df_abs=
+  read_csv("~/Desktop/data science/data_wrangling_i/data_import_examples/FAS_litters.csv")
+names(litters_df_abs)
+litters_data=janitor::clean_names(litters_df_abs) #package::function syntax allowes using funciton without loading library
+names(litters_data)
+```
+
+```{r}
+pups_df=
+  read_csv("data_import_examples/FAS_pups.csv")
+
+pups_df=
+  janitor::clean_names(pups_df)
+```
+
+## LOOK AT DATA
+
+```{r}
+litters_df
+head(litters_df)
+tail(litters_df)
+```
+
+you can use `view`, don't include in RMD file 
+
+```{r, eval=FALSE}
+view(litters_df)
+```
+
+Look at a data summary
+```{r}
+str(litters_df)
+```
