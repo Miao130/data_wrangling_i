@@ -86,4 +86,30 @@ litters_df=
       )
   )
 ```
+```{r}
+library(readxl)
+mlb_df =
+  read_excel("data_import_examples/mlb11.xlsx")
+```
+
+```{r}
+pups_base = read.csv("./data_import_examples/FAS_pups.csv")
+pups_readr = read_csv("./data_import_examples/FAS_pups.csv")
+
+View(pups_base)
+View(pups_readr)
+
+pups_base
+pups_readr
+
+pups_base$S
+pups_readr$S
+```
+
+```{r}
+pups_data=read_csv("./data_import_examples/FAS_pups.csv")
+pups_df_cleaned=
+  janitor::clean_names(pups_data)
+write_csv(pups_df_cleaned,"data_import_examples/pups_cleaned.csv")
+```
 

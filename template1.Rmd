@@ -1,0 +1,41 @@
+---
+title: "data_manipulation"
+author: "Miao Fu"
+date: "2023-09-21"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+Import FAS litters 
+
+```{r}
+litters_df=
+  read_csv("./data_import_examples/FAS_litters.csv")
+litters_df=janitor::clean_names(litters_df)
+
+pups_df=
+  read_csv("./data_import_examples/FAS_pups.csv")
+```
+```{r}
+select(litters_df, group, litter_number, gd0_weight)
+select(litters_df, gd0_weight, group)
+select(litters_df, group, gd0_weight:gd_of_birth) #: means from a to b
+select(litters_df, group, starts_with("pups")) #starts_with is the column that starts with something 
+select(litters_df, -litter_number) #remove column 
+select(litters_df, gd0_weight, everything()) #give gd0_weight to the end and keep all the other things showing after it 
+select(litters_df, gd0_weight) #only gd0_weight 
+```
+
+```{r}
+rename(litters_df, litter_id = litter_number) #newname=oldname
+filter(litters_df, group=="Con7")
+filter(litters_df, group=="Mod8")
+filter(litters_df, group != "Con7")
+filter(litters_df, gd0_weight>20)
+filter(litters_df, group=="Con7" | group=="Con8") # in 7 or 8
+filter(litters_df, group %in% c("Con7", "Con8"), gd0_weight >20)
+```
+
